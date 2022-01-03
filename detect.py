@@ -1,4 +1,5 @@
 from block import *
+from sort import *
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -27,6 +28,8 @@ class detect(object):
         self.P = (1.80, 1.80, 1.80, 0.0125, 0.0125, 0.0125, 0.0125)
         self.t1 = 2.80
         self.t2 = 0.02
+
+        self.feature_list = list()
 
     def check_image(self, image_height, image_width):
         if self.image_data != "L":
@@ -64,7 +67,6 @@ class detect(object):
         image_width_overlap = self.image_width - self.block_dimension
         image_height_overlap = self.image_height - self.block_dimension
         block_list = list()
-        feature_list = list()
 
         if self.is_rgb_image:
             for i in tqdm(range(0, image_width_overlap + 1, 1)):
@@ -83,8 +85,7 @@ class detect(object):
                         self.block_dimension,
                     )
                     block_list = image_block.compute_block()
-                    #feature_list.append(block_list)
-                    # self.features_container.append_block(image_block.compute_block())
+                    self.feature_list.append(block_list)
         else:
             for i in tqdm(range(image_width_overlap + 1)):
                 for j in range(image_height_overlap + 1):
@@ -95,9 +96,14 @@ class detect(object):
                         image_block_grayscale, None, i, j, self.block_dimension
                     )
                     block_list = image_block.compute_block()
-                    #feature_list.append(block_list)
-                    # self.features_container.append_block(image_block.compute_block())
-        print(feature_list)
+                    self.feature_list.append(block_list)
+        return
+
+    def lexicographic_sort(self):
+        feature_list = sort(self.feature_list)
+        feature_list.sample_show_list()
+        feature_list.sort_features()
+        # feature_list.sample_show_list()
         return
 
     def show_image(self):
@@ -123,13 +129,14 @@ class detect(object):
 
 
 def main():
-    image_path = "real_heggi.jpg"
+    image_path = "Kuda Duplikat.jpg"
 
     detect_model = detect(image_path, 32)
     detect_model.show_image()
     detect_model.show_metadata()
 
     detect_model.compute_block()
+    detect_model.lexicographic_sort()
 
 
 if __name__ == "__main__":
