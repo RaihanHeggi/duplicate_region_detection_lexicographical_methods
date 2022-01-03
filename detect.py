@@ -1,8 +1,8 @@
-import block as block
+from block import *
 
 import matplotlib.pyplot as plt
 import numpy as np
-import tqdm
+from tqdm import tqdm
 
 from PIL import Image
 
@@ -63,9 +63,11 @@ class detect(object):
     def compute_block(self):
         image_width_overlap = self.image_width - self.block_dimension
         image_height_overlap = self.image_height - self.block_dimension
+        block_list = list()
+        feature_list = list()
 
         if self.is_rgb_image:
-            for i in tqdm.tqdm(range(0, image_width_overlap + 1, 1)):
+            for i in tqdm(range(0, image_width_overlap + 1, 1)):
                 for j in range(0, image_height_overlap + 1, 1):
                     image_block_rgb = self.image_data.crop(
                         (i, j, i + self.block_dimension, j + self.block_dimension)
@@ -80,9 +82,11 @@ class detect(object):
                         j,
                         self.block_dimension,
                     )
-                    self.features_container.append_block(image_block.compute_block())
+                    block_list = image_block.compute_block()
+                    #feature_list.append(block_list)
+                    # self.features_container.append_block(image_block.compute_block())
         else:
-            for i in range(image_width_overlap + 1):
+            for i in tqdm(range(image_width_overlap + 1)):
                 for j in range(image_height_overlap + 1):
                     image_block_grayscale = self.image_data.crop(
                         (i, j, i + self.block_dimension, j + self.block_dimension)
@@ -90,7 +94,11 @@ class detect(object):
                     image_block = block(
                         image_block_grayscale, None, i, j, self.block_dimension
                     )
-                    self.features_container.append_block(image_block.compute_block())
+                    block_list = image_block.compute_block()
+                    #feature_list.append(block_list)
+                    # self.features_container.append_block(image_block.compute_block())
+        print(feature_list)
+        return
 
     def show_image(self):
         self.image_data.show()

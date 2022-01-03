@@ -19,6 +19,14 @@ class block(object):
         self.coordinate = (x_coordinate, y_coordinate)
         self.block_dimension = block_dimension
 
+    def compute_block(self):
+        # block akan terdiri dari hasil PCA dan Characteristic Features
+        block_list = list()
+        block_list.append(self.coordinate)
+        block_list.append(self.compute_characteristic_features(precision=4))
+        block_list.append(self.compute_PCA(precision=6))
+        return block_list
+
     def compute_PCA(self, precision):
         pca_module = PCA(n_components=1)
 
@@ -38,16 +46,15 @@ class block(object):
                 round(element, precision)
                 for element in list(principal_components.flatten())
             ]
-            return precise_result
         else:
-            image_array = np.array(self.image_grayscale)
+            image_array = np.array(self.image_gray)
             pca_module.fit_transform(image_array)
             principal_components = pca_module.components_
             precise_result = [
                 round(element, precision)
                 for element in list(principal_components.flatten())
             ]
-            return precise_result
+        return precise_result
 
     # need refactoring code
     def compute_characteristic_features(self, precision):
@@ -132,10 +139,3 @@ class block(object):
         ]
         return precise_result
 
-    def compute_block(self):
-        # block akan terdiri dari hasil PCA dan Characteristic Features
-        block_list = list()
-        block_list.append(self.coordinate)
-        block_data_list.append(self.compute_characteristic_features(precision=4))
-        block_data_list.append(self.compute_pca(precision=6))
-        return block_data_list
