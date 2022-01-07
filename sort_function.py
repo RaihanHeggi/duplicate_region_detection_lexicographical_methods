@@ -1,12 +1,11 @@
-class sort(object):
+class sort_function(object):
     def __init__(self, feature_list):
         self.feature_list = feature_list
-        return
 
     def sort_features(self):
         # melakukan sort list berdasarkan nilai characteristic dan pixel
         self.feature_list = sorted(self.feature_list, key=lambda x: (x[1], x[2]))
-        return
+        return self.feature_list
 
     def sample_show_list(self):
         # fungsi untuk menampilkan isi feature list dengan  banyak sampel data 5

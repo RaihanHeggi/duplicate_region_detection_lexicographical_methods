@@ -1,5 +1,6 @@
 from block import *
-from sort import *
+from sort_function import *
+from analyze_function import *
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -100,10 +101,24 @@ class detect(object):
         return
 
     def lexicographic_sort(self):
-        feature_list = sort(self.feature_list)
-        feature_list.sample_show_list()
-        feature_list.sort_features()
+        feature_list_sort = sort_function(self.feature_list)
+        # feature_list_sort.sample_show_list()
+        self.sorted_feature_list = feature_list_sort.sort_features()
         # feature_list.sample_show_list()
+        return
+
+    def analyze(self):
+        analyze_func = analyze_function(
+            self.feature_list,
+            self.sorted_feature_list,
+            self.P,
+            self.t1,
+            self.t2,
+            self.Nd,
+            self.Nn,
+        )
+        offset_dictionary = analyze_func.analyze_block()
+        print(offset_dictionary[1][1])
         return
 
     def show_image(self):
@@ -137,6 +152,7 @@ def main():
 
     detect_model.compute_block()
     detect_model.lexicographic_sort()
+    detect_model.analyze()
 
 
 if __name__ == "__main__":
