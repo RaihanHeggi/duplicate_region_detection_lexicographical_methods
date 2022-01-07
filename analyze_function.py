@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import numpy as np
+import math
 
 
 class analyze_function(object):
