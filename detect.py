@@ -118,7 +118,7 @@ class detect(object):
             self.Nn,
         )
         offset_dictionary = analyze_func.analyze_block()
-        print(offset_dictionary[1][1])
+        print(offset_dictionary)
         return
 
     def show_image(self):

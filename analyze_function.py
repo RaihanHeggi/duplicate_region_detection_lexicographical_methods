@@ -12,6 +12,7 @@ class analyze_function(object):
         self.t2 = t2
         self.Nd = Nd
         self.Nn = Nn
+        self.offset_dictionary = {}
 
     # function to analyze block relations
     def analyze_block(self):
@@ -26,7 +27,7 @@ class analyze_function(object):
                     self.sorted_feature_list[j][0],
                     result[1],
                 )
-                z += 1
+                iteration += 1
         return self.offset_dictionary
 
     def is_correlated(self, first_block, second_block):
