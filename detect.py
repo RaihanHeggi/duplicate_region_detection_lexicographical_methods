@@ -15,15 +15,15 @@ from PIL import Image
 
 
 class detect(object):
-    def __init__(self, image_path, block_dimension):
+    def __init__(self, image_path, block_dimension=32):
         self.image_path = image_path
         self.block_dimension = block_dimension
         self.image_height, self.image_width = self.load_image(self.image_path)
 
         # algorithm's parameters from the first paper
         self.N = self.image_width * self.image_height
-        # self.b = self.block_dimension * self.block_dimension
-        self.b = 64
+        self.b = self.block_dimension * self.block_dimension
+        # self.b = 64
         self.Nb = (self.image_width - self.block_dimension + 1) * (
             self.image_height - self.block_dimension + 1
         )
@@ -40,29 +40,31 @@ class detect(object):
         self.offset_dictionary = dict()
 
     def check_image(self, image_height, image_width):
-        if self.image_data != "L":
+        if self.image_data.mode != "L":
             self.is_rgb_image = True
             self.image_data = self.image_data.convert("RGB")
-            rgb_image_pixels = self.image_data.load()
+            # self.rgb_image_pixels = self.image_data.load()
             self.image_gray = self.image_data.convert(
                 "L"
             )  # creates a grayscale version of current image to be used later
-            grayscale_image_pixels = self.image_gray.load()
-            for y_coordinate in range(0, image_height):
-                for x_coordinate in range(0, image_width):
-                    (
-                        red_pixel_value,
-                        green_pixel_value,
-                        blue_pixel_value,
-                    ) = rgb_image_pixels[x_coordinate, y_coordinate]
-                    grayscale_image_pixels[x_coordinate, y_coordinate] = (
-                        int(0.299 * red_pixel_value)
-                        + int(0.587 * green_pixel_value)
-                        + int(0.114 * blue_pixel_value)
-                    )
+            # self.grayscale_image_pixels = self.image_gray.load()
+            # for y_coordinate in range(0, image_height):
+            #     for x_coordinate in range(0, image_width):
+            #         (
+            #             red_pixel_value,
+            #             green_pixel_value,
+            #             blue_pixel_value,
+            #         ) = self.rgb_image_pixels[x_coordinate, y_coordinate]
+            #         self.grayscale_image_pixels[x_coordinate, y_coordinate] = (
+            #             int(0.299 * red_pixel_value)
+            #             + int(0.587 * green_pixel_value)
+            #             + int(0.114 * blue_pixel_value)
+            #         )
         else:
             self.is_rgb_image = False
             self.image_gray = self.image_data.convert("L")
+            # self.grayscale_image_pixels = self.image_gray.load()
+
         return
 
     def load_image(self, image_path):
@@ -101,7 +103,7 @@ class detect(object):
                         (i, j, i + self.block_dimension, j + self.block_dimension)
                     )
                     image_block = block(
-                        image_block_grayscale, None, i, j, self.block_dimension
+                        image_block_grayscale, None, i, j, self.block_dimension,
                     )
                     block_list = image_block.compute_block()
                     self.feature_list.append(block_list)
@@ -134,7 +136,7 @@ class detect(object):
 
         # create an array as the canvas of the final image
         groundtruth_image = np.zeros((self.image_height, self.image_width))
-        lined_image = np.array(self.image_data.convert("RGB"))
+        lined_image = np.array(self.image_gray.convert("RGB"))
 
         # offset yang didapatkan dilakukan sort sehingga hasilnya terbalik
         sorted_offset = sorted(
@@ -265,6 +267,9 @@ class detect(object):
 
         timestamp = time.strftime("%Y%m%d_%H%M%S")
 
+        groundtruth_image = groundtruth_image.astype(np.uint8)
+        lined_image = lined_image.astype(np.uint8)
+
         imageio.imwrite(
             self.image_output_directory + (timestamp + "_" + self.image_path),
             groundtruth_image,
@@ -299,7 +304,7 @@ class detect(object):
 
 
 def main():
-    image_path = "tank_2.jpg"
+    image_path = "Noisy_Image.png"
 
     detect_model = detect(image_path, 32)
     detect_model.show_image()
