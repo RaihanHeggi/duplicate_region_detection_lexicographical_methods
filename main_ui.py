@@ -2,6 +2,8 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QVBoxLayout, QLabel
 from PyQt5.QtGui import QPixmap
 
+from detect import detect
+
 ID_DIALOG = "dialog"
 ID_FIELD_FILE_NAME = "filename1"
 ID_BTN_BROWSE = "browse1"
@@ -77,6 +79,13 @@ class Window(object):
         # TODO For Processing Image
         image_path = self.filename.text()  # Image Path dari Selected Browse Image
         print(image_path)
+        detect_model = detect(image_path, 32)
+        detect_model.show_image()
+        detect_model.show_metadata()
+
+        detect_model.compute_block()
+        detect_model.lexicographic_sort()
+        detect_model.analyze()
         self.create_image1(image_path)  # Ini Buat Nampilin Gambar Pertama
         self.create_image2(image_path)  # Ini Buat Nampilin Gambar Kedua
 
