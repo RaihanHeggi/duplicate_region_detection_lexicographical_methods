@@ -2,7 +2,8 @@ import cv2
 from matplotlib import pyplot as plt
 from skimage.util import random_noise
 
-I = cv2.imread('Kuda Duplikat.jpg', 1)
+image_path = 'Kuda Duplikat.jpg'
+I = cv2.imread(image_path, 1)
 gauss = random_noise(I, mode='gaussian', seed=None, clip=True)
 sp = random_noise(I, mode='s&p', seed=None, clip=True)
 localvar = random_noise(I, mode='localvar', seed=None, clip=True)
