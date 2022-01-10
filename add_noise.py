@@ -5,7 +5,7 @@ from skimage.util import random_noise
 
 def add_noise(img, mean=0):
     var = 0.1
-    sigma = var ** 1.9
+    sigma = var ** 1.2
     noisy_image = np.random.normal(mean, sigma, img.shape)
     noisy_image = noisy_image.reshape(img.shape)
     noisy_image = img + noisy_image

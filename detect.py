@@ -304,7 +304,7 @@ class detect(object):
 
 
 def main():
-    image_path = "Noisy_Image.png"
+    image_path = "001_O_added.png"
 
     detect_model = detect(image_path, 32)
     detect_model.show_image()

@@ -1,0 +1,4 @@
+Dataset asal berasal dari CoMoFoD 512x512
+
+namun dimodifikasi (added/removed) oleh kelompok 3 
+dataset ini digunakan karena ukurannya yang sudah terstrandar
