@@ -3,6 +3,7 @@ from sort_function import *
 from analyze_function import *
 
 import matplotlib.pyplot as plt
+import math
 import numpy as np
 import os
 import time
@@ -23,10 +24,19 @@ class detect(object):
         # algorithm's parameters from the first paper
         self.N = self.image_width * self.image_height
         self.b = self.block_dimension * self.block_dimension
+        
+        #popescu paper optimal reference 
         # self.b = 64
-        self.Nb = (self.image_width - self.block_dimension + 1) * (
-            self.image_height - self.block_dimension + 1
-        )
+
+        #luo et al Nb calculation formulas
+        # self.Nb = (self.image_width - self.block_dimension + 1) * (
+        #     self.image_height - self.block_dimension + 1
+        # )
+
+        #popescu et al Nb calculation formulas
+        self.Nb = (math.sqrt(self.N) - math.sqrt(self.b) + 1) ** 2
+
+        
         self.Nn = 100  # amount of neighboring block to be evaluated
         self.Nf = 128  # minimum treshold of the offset's frequency
         self.Nd = 16  # minimum treshold of the offset's magnitude
@@ -304,7 +314,7 @@ class detect(object):
 
 
 def main():
-    image_path = "001_O_added.png"
+    image_path = "200_O_CA2_2.png"
 
     detect_model = detect(image_path, 32)
     detect_model.show_image()
