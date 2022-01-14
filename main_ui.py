@@ -13,8 +13,7 @@ TEXT_WINDOW_TITLE = "Duplicated Image Regions"
 TEXT_BTN_BROWSE = "Browse"
 TEXT_BTN_SUBMIT = "Submit Data"
 
-IMAGE_FILE_TYPE_JPG = "Image file(*.jpg)"
-IMAGE_FILE_TYPE_PNG = "Image file(*.png)"
+IMAGE_FILE_TYPE_FILTER = "Image file(*.png *.jpg *.jpeg)"
 
 
 class Window(object):
@@ -62,7 +61,7 @@ class Window(object):
 
     def on_click_select(self):
         # Get Image Path
-        image1 = QFileDialog.getOpenFileName(None, 'OpenFile', '', IMAGE_FILE_TYPE_JPG)
+        image1 = QFileDialog.getOpenFileName(None, 'OpenFile', '', IMAGE_FILE_TYPE_FILTER)
         self.filename.setText(image1[0])
 
     def create_image1(self, image_path):
