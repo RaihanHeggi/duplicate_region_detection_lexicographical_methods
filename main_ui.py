@@ -79,6 +79,7 @@ class Window(object):
         # TODO For Processing Image
         image_path = self.filename.text()  # Image Path dari Selected Browse Image
         print(image_path)
+
         detect_model = detect(image_path, 32)
         detect_model.show_image()
         detect_model.show_metadata()
@@ -86,8 +87,10 @@ class Window(object):
         detect_model.compute_block()
         detect_model.lexicographic_sort()
         detect_model.analyze()
+        result_path = detect_model.reconstruct()
+
         self.create_image1(image_path)  # Ini Buat Nampilin Gambar Pertama
-        self.create_image2(image_path)  # Ini Buat Nampilin Gambar Kedua
+        self.create_image2(result_path)  # Ini Buat Nampilin Gambar Kedua
 
 
 if __name__ == "__main__":
