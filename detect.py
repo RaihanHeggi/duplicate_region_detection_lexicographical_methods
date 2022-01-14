@@ -40,6 +40,10 @@ class detect(object):
         self.Nf = 128  # minimum treshold of the offset's frequency
         self.Nd = 16  # minimum treshold of the offset's magnitude
 
+        # self.Nn = 50
+        # self.Nf = 128
+        # self.Nd = 16
+
         # algorithm's parameters from the second paper
         self.P = (1.80, 1.80, 1.80, 0.0125, 0.0125, 0.0125, 0.0125)
         self.t1 = 2.80
@@ -313,7 +317,7 @@ class detect(object):
 
 
 def main():
-    image_path = "001_O_added.png"
+    image_path = "195_O_removed.png"
 
     detect_model = detect(image_path, 32)
     detect_model.show_image()

@@ -13,7 +13,7 @@ def calculateSimilarity(img_a, img_b):
     truePx, falsePx = 0, 0
     for i in range(x):
         for j in range(y):
-            if img_a[i, j] != img_b[i, j]:
+            if img_a[i, j].all != img_b[i, j].all:
                 falsePx += 1
             else:
                 truePx += 1
@@ -37,13 +37,13 @@ def calculateValue(img_a, img_b):
     truePositivePx, trueNegativePx, falseNegativePx, falsePositivePx, = 0, 0, 0, 0
     for i in range(x):
         for j in range(y):
-            if sum(img_a[i, j]) == 0 and sum(img_a[i, j]) == 0:
+            if sum(img_a[i, j]) == 0 and sum(img_b[i, j]) == 0:
                 trueNegativePx += 1
-            elif sum(img_a[i, j]) == 765 and sum(img_a[i, j]) == 765:
+            elif sum(img_a[i, j]) == 765 and sum(img_b[i, j]) == 765:
                 truePositivePx += 1
-            elif sum(img_a[i, j]) == 0 and sum(img_a[i, j]) == 765:
+            elif sum(img_a[i, j]) == 0 and sum(img_b[i, j]) == 765:
                 falseNegativePx += 1
-            else:
+            elif sum(img_a[i, j]) == 765 and sum(img_b[i, j]) == 0:
                 falsePositivePx += 1
     return truePositivePx, trueNegativePx, falsePositivePx, falseNegativePx
 
@@ -68,12 +68,14 @@ def load_image(path_a, path_b):
 
 def main():
     # groundtruth of dataset image
-    path_a = "groundtruth_200_O.png"
+    path_a = "grountruth_removed_012_O.png"
     # classification image result
-    path_b = "code20220114_041139_200_O_remove.png"
+    path_b = "code20220114_215401_012_O_removed.png"
     img_a, img_b = load_image(path_a, path_b)
     mse = calculate_MSE(img_a, img_b)
     print("MSE value : ", mse)
+    similarity = calculateSimilarity(img_a, img_b)
+    print("Similarity :", similarity)
     tp, tn, fp, fn = calculateValue(img_a, img_b)
     print("tn, tp, fp, fn : ", tn, tp, fp, fn)
     TNR, TPR, FPR, acc = calculateEvaluationValue(tp, tn, fn, fp)
