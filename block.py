@@ -28,7 +28,7 @@ class block(object):
         return block_list
 
     def compute_PCA(self, precision):
-        pca_module = PCA(n_components=1)
+        pca_module = PCA(n_components=7)
 
         if self.is_image_rgb:
             image_array = np.array(self.image_rgb)
@@ -137,5 +137,6 @@ class block(object):
         precise_result = [
             round(element, precision) for element in characteristic_feature_list
         ]
+
         return precise_result
 

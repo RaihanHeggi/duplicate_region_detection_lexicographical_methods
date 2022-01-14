@@ -18,16 +18,18 @@ class analyze_function(object):
     def analyze_block(self):
         iteration = 0
         feature_len = len(self.sorted_feature_list)
-        for i in tqdm(range(feature_len - 1)):
-            j = i + 1
-            result = self.is_correlated(i, j)
-            if result[0]:
-                self.add_dictionary(
-                    self.sorted_feature_list[i][0],
-                    self.sorted_feature_list[j][0],
-                    result[1],
-                )
-                iteration += 1
+        for i in tqdm(range(feature_len)):
+            for j in range(i + 1, feature_len):
+                result = self.is_correlated(i, j)
+                if result[0]:
+                    self.add_dictionary(
+                        self.sorted_feature_list[i][0],
+                        self.sorted_feature_list[j][0],
+                        result[1],
+                    )
+                    iteration += 1
+                else:
+                    break
         return self.offset_dictionary
 
     def is_correlated(self, first_block, second_block):
