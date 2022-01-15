@@ -20,6 +20,11 @@ Terdiri dari 4 macam branch
 - [graphic-ui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/graphic-ui) Branch ini menjalankan applikasi dengan graphic user interface dimana sangat mudah di jalankan
 - [non-gui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/non-gui) Branch ini menjalankan aplikasi dengan menggunakan command line interface dimana pengoprasiannya dengan kode
 
+## Build With
+- Python Programming Language - >= 3.7.2
+- Silahkan install modul/library yang dibutuhkan dengan menggunakan perintah pip -r requirements.txt
+
+
 ## Colaborator
 
 Name Of Contribute
