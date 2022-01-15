@@ -2,7 +2,6 @@ from block import *
 from sort_function import *
 from analyze_function import *
 
-import matplotlib.pyplot as plt
 import math
 import numpy as np
 import os
@@ -11,8 +10,11 @@ import imageio
 
 from tqdm import tqdm
 
-
 from PIL import Image
+
+DEFAULT_PARENT_DIR = os.getcwd()
+TIME_STAMP = time.strftime("%Y%m%d")
+DIRECTORY_OUTPUT = "ouput_image_result"
 
 
 class detect(object):
@@ -143,9 +145,6 @@ class detect(object):
         return
 
     def reconstruct(self):
-        # Fungsi dibuat berdasarkan referensi nomor satu
-
-        self.image_output_directory = os.getcwd()
 
         # create an array as the canvas of the final image
         groundtruth_image = np.zeros((self.image_height, self.image_width))
@@ -172,12 +171,12 @@ class detect(object):
             for i in range(len(self.offset_dictionary[key])):
                 # The original image (grayscale)
                 for j in range(
-                    self.offset_dictionary[key][i][1],
-                    self.offset_dictionary[key][i][1] + self.block_dimension,
+                        self.offset_dictionary[key][i][1],
+                        self.offset_dictionary[key][i][1] + self.block_dimension,
                 ):
                     for k in range(
-                        self.offset_dictionary[key][i][0],
-                        self.offset_dictionary[key][i][0] + self.block_dimension,
+                            self.offset_dictionary[key][i][0],
+                            self.offset_dictionary[key][i][0] + self.block_dimension,
                     ):
                         groundtruth_image[j][k] = 255
 
@@ -188,111 +187,114 @@ class detect(object):
         for x_coordinate in range(2, self.image_height - 2):
             for y_cordinate in range(2, self.image_width - 2):
                 if groundtruth_image[x_coordinate, y_cordinate] == 255 and (
-                    groundtruth_image[x_coordinate + 1, y_cordinate] == 0
-                    or groundtruth_image[x_coordinate - 1, y_cordinate] == 0
-                    or groundtruth_image[x_coordinate, y_cordinate + 1] == 0
-                    or groundtruth_image[x_coordinate, y_cordinate - 1] == 0
-                    or groundtruth_image[x_coordinate - 1, y_cordinate + 1] == 0
-                    or groundtruth_image[x_coordinate + 1, y_cordinate + 1] == 0
-                    or groundtruth_image[x_coordinate - 1, y_cordinate - 1] == 0
-                    or groundtruth_image[x_coordinate + 1, y_cordinate - 1] == 0
+                        groundtruth_image[x_coordinate + 1, y_cordinate] == 0
+                        or groundtruth_image[x_coordinate - 1, y_cordinate] == 0
+                        or groundtruth_image[x_coordinate, y_cordinate + 1] == 0
+                        or groundtruth_image[x_coordinate, y_cordinate - 1] == 0
+                        or groundtruth_image[x_coordinate - 1, y_cordinate + 1] == 0
+                        or groundtruth_image[x_coordinate + 1, y_cordinate + 1] == 0
+                        or groundtruth_image[x_coordinate - 1, y_cordinate - 1] == 0
+                        or groundtruth_image[x_coordinate + 1, y_cordinate - 1] == 0
                 ):
 
                     # creating the edge line, respectively left-upper, right-upper, left-down, right-down
                     if (
-                        groundtruth_image[x_coordinate - 1, y_cordinate] == 0
-                        and groundtruth_image[x_coordinate, y_cordinate - 1] == 0
-                        and groundtruth_image[x_coordinate - 1, y_cordinate - 1] == 0
+                            groundtruth_image[x_coordinate - 1, y_cordinate] == 0
+                            and groundtruth_image[x_coordinate, y_cordinate - 1] == 0
+                            and groundtruth_image[x_coordinate - 1, y_cordinate - 1] == 0
                     ):
                         lined_image[
-                            x_coordinate - 2 : x_coordinate, y_cordinate, 1
+                        x_coordinate - 2: x_coordinate, y_cordinate, 1
                         ] = 255
                         lined_image[
-                            x_coordinate, y_cordinate - 2 : y_cordinate, 1
+                        x_coordinate, y_cordinate - 2: y_cordinate, 1
                         ] = 255
                         lined_image[
-                            x_coordinate - 2 : x_coordinate,
-                            y_cordinate - 2 : y_cordinate,
-                            1,
+                        x_coordinate - 2: x_coordinate,
+                        y_cordinate - 2: y_cordinate,
+                        1,
                         ] = 255
                     elif (
-                        groundtruth_image[x_coordinate + 1, y_cordinate] == 0
-                        and groundtruth_image[x_coordinate, y_cordinate - 1] == 0
-                        and groundtruth_image[x_coordinate + 1, y_cordinate - 1] == 0
+                            groundtruth_image[x_coordinate + 1, y_cordinate] == 0
+                            and groundtruth_image[x_coordinate, y_cordinate - 1] == 0
+                            and groundtruth_image[x_coordinate + 1, y_cordinate - 1] == 0
                     ):
                         lined_image[
-                            x_coordinate + 1 : x_coordinate + 3, y_cordinate, 1
+                        x_coordinate + 1: x_coordinate + 3, y_cordinate, 1
                         ] = 255
                         lined_image[
-                            x_coordinate, y_cordinate - 2 : y_cordinate, 1
+                        x_coordinate, y_cordinate - 2: y_cordinate, 1
                         ] = 255
                         lined_image[
-                            x_coordinate + 1 : x_coordinate + 3,
-                            y_cordinate - 2 : y_cordinate,
-                            1,
+                        x_coordinate + 1: x_coordinate + 3,
+                        y_cordinate - 2: y_cordinate,
+                        1,
                         ] = 255
                     elif (
-                        groundtruth_image[x_coordinate - 1, y_cordinate] == 0
-                        and groundtruth_image[x_coordinate, y_cordinate + 1] == 0
-                        and groundtruth_image[x_coordinate - 1, y_cordinate + 1] == 0
+                            groundtruth_image[x_coordinate - 1, y_cordinate] == 0
+                            and groundtruth_image[x_coordinate, y_cordinate + 1] == 0
+                            and groundtruth_image[x_coordinate - 1, y_cordinate + 1] == 0
                     ):
                         lined_image[
-                            x_coordinate - 2 : x_coordinate, y_cordinate, 1
+                        x_coordinate - 2: x_coordinate, y_cordinate, 1
                         ] = 255
                         lined_image[
-                            x_coordinate, y_cordinate + 1 : y_cordinate + 3, 1
+                        x_coordinate, y_cordinate + 1: y_cordinate + 3, 1
                         ] = 255
                         lined_image[
-                            x_coordinate - 2 : x_coordinate,
-                            y_cordinate + 1 : y_cordinate + 3,
-                            1,
+                        x_coordinate - 2: x_coordinate,
+                        y_cordinate + 1: y_cordinate + 3,
+                        1,
                         ] = 255
                     elif (
-                        groundtruth_image[x_coordinate + 1, y_cordinate] == 0
-                        and groundtruth_image[x_coordinate, y_cordinate + 1] == 0
-                        and groundtruth_image[x_coordinate + 1, y_cordinate + 1] == 0
+                            groundtruth_image[x_coordinate + 1, y_cordinate] == 0
+                            and groundtruth_image[x_coordinate, y_cordinate + 1] == 0
+                            and groundtruth_image[x_coordinate + 1, y_cordinate + 1] == 0
                     ):
                         lined_image[
-                            x_coordinate + 1 : x_coordinate + 3, y_cordinate, 1
+                        x_coordinate + 1: x_coordinate + 3, y_cordinate, 1
                         ] = 255
                         lined_image[
-                            x_coordinate, y_cordinate + 1 : y_cordinate + 3, 1
+                        x_coordinate, y_cordinate + 1: y_cordinate + 3, 1
                         ] = 255
                         lined_image[
-                            x_coordinate + 1 : x_coordinate + 3,
-                            y_cordinate + 1 : y_cordinate + 3,
-                            1,
+                        x_coordinate + 1: x_coordinate + 3,
+                        y_cordinate + 1: y_cordinate + 3,
+                        1,
                         ] = 255
 
                 # creating the straigh line, respectively upper, down, left, right line
                 elif groundtruth_image[x_coordinate, y_cordinate + 1] == 0:
                     lined_image[
-                        x_coordinate, y_cordinate + 1 : y_cordinate + 3, 1
+                    x_coordinate, y_cordinate + 1: y_cordinate + 3, 1
                     ] = 255
                 elif groundtruth_image[x_coordinate, y_cordinate - 1] == 0:
-                    lined_image[x_coordinate, y_cordinate - 2 : y_cordinate, 1] = 255
+                    lined_image[x_coordinate, y_cordinate - 2: y_cordinate, 1] = 255
                 elif groundtruth_image[x_coordinate - 1, y_cordinate] == 0:
-                    lined_image[x_coordinate - 2 : x_coordinate, y_cordinate, 1] = 255
+                    lined_image[x_coordinate - 2: x_coordinate, y_cordinate, 1] = 255
                 elif groundtruth_image[x_coordinate + 1, y_cordinate] == 0:
                     lined_image[
-                        x_coordinate + 1 : x_coordinate + 3, y_cordinate, 1
+                    x_coordinate + 1: x_coordinate + 3, y_cordinate, 1
                     ] = 255
 
-        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        # timestamp = time.strftime("%Y%m%d_%H%M%S")
 
         groundtruth_image = groundtruth_image.astype(np.uint8)
         lined_image = lined_image.astype(np.uint8)
 
+        new_image_name_ground_truth = "output_" + TIME_STAMP + "_" + self.image_path
+        new_image_name_lined = "output_" + TIME_STAMP + "_lined_" + self.image_path
+
         imageio.imwrite(
-            self.image_output_directory + (timestamp + "_" + self.image_path),
+            get_uri_image(new_image_name_ground_truth),
             groundtruth_image,
         )
         imageio.imwrite(
-            self.image_output_directory + (timestamp + "_lined_" + self.image_path),
+            get_uri_image(new_image_name_lined),
             lined_image,
         )
 
-        return self.image_output_directory + timestamp + "_lined_" + self.image_path
+        return get_uri_image(new_image_name_lined)
 
     def show_image(self):
         self.image_data.show()
@@ -319,6 +321,9 @@ class detect(object):
 def main():
     image_path = "compress_50_added.png"
 
+    # Directory
+    create_dir(DIRECTORY_OUTPUT)
+
     detect_model = detect(image_path, 32)
     detect_model.show_image()
     detect_model.show_metadata()
@@ -327,6 +332,22 @@ def main():
     detect_model.lexicographic_sort()
     detect_model.analyze()
     result_path = detect_model.reconstruct()
+
+    print(result_path)
+
+
+def get_uri_image(image_path):
+    return os.path.join(DEFAULT_PARENT_DIR, DIRECTORY_OUTPUT, image_path)
+
+
+def create_dir(str):
+    try:
+        os.makedirs(str, exist_ok=True)
+        print("Directory '%s' created successfully" % str)
+    except OSError as error:
+        print("Directory '%s' can not be created")
+
+    print("Directory '%s' created" % str)
 
 
 if __name__ == "__main__":
