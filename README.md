@@ -10,6 +10,16 @@ Repository Penyimpanan File Tubes Kelas Forensik DIgital Kelompok 3
 
 2. Robust detection algorithm, taken from Robust Detection of Region-Duplication Forgery in Digital Image; Slower and having rough result attack detection algorithm but are considered robust towards noise and post region duplication process
 
+## Result Apps
+![ScreenShoot Apps](docs/image/image_gui.png?raw=true)
+
+## Progress Development Apps
+Terdiri dari 4 macam branch
+- [master](https://github.com/RaihanHeggi/tubes_duplicate_region) Branch ini terdiri dari master code dimana semua berjalan dengan lancar
+- [noise-processing](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/noise-processing) Branch ini terdiri dari noise-processing research
+- [graphic-ui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/graphic-ui) Branch ini menjalankan applikasi dengan graphic user interface dimana sangat mudah di jalankan
+- [non-gui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/non-gui) Branch ini menjalankan aplikasi dengan menggunakan command line interface dimana pengoprasiannya dengan kode
+
 ## Colaborator
 
 Name Of Contribute
