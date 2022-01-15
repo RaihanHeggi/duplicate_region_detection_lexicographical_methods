@@ -68,9 +68,9 @@ def load_image(path_a, path_b):
 
 def main():
     # groundtruth of dataset image
-    path_a = "groundtruth_noise_40db.png"
+    path_a = "groundtruth_compress_80.png"
     # classification image result
-    path_b = "code20220115_083818_noise_40db_added.png"
+    path_b = "code20220115_172754_compress_80_added.jpg"
     img_a, img_b = load_image(path_a, path_b)
     mse = calculate_MSE(img_a, img_b)
     print("MSE value : ", mse)

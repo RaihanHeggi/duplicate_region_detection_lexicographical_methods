@@ -317,7 +317,7 @@ class detect(object):
 
 
 def main():
-    image_path = "compress_50_added.png"
+    image_path = "compress_80_added.png"
 
     detect_model = detect(image_path, 32)
     detect_model.show_image()
