@@ -76,10 +76,15 @@ class Window(object):
 
     def on_click_process(self):
         # TODO For Processing Image
-        image_path = self.filename.text()  # Image Path dari Selected Browse Image
-        print(image_path)
+        image_path_uri = self.filename.text()  # Image Path dari Selected Browse Image
+        self.create_image1(image_path_uri)  # Ini Buat Nampilin Gambar Pertama
 
-        detect_model = detect(image_path, 32)
+        image_path_uri_arr = image_path_uri.split("/")
+        image_path_name = image_path_uri_arr[-1]
+
+        print("Get Image Uri : " + image_path_uri)
+
+        detect_model = detect(image_path_name, 32)
         detect_model.show_image()
         detect_model.show_metadata()
 
@@ -88,8 +93,9 @@ class Window(object):
         detect_model.analyze()
         result_path = detect_model.reconstruct()
 
-        self.create_image1(image_path)  # Ini Buat Nampilin Gambar Pertama
-        self.create_image2(result_path)  # Ini Buat Nampilin Gambar Kedua
+        print(result_path)
+
+        # self.create_image2(result_path)  # Ini Buat Nampilin Gambar Kedua
 
 
 if __name__ == "__main__":
