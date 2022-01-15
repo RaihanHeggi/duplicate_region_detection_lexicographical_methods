@@ -1,45 +1,55 @@
 import cv2
 import numpy as np
+import acoustics
 from skimage.util import random_noise
 
 
-def add_noise(img, mean=0):
-    var = 0.1
-    sigma = var ** 1.2
-    noisy_image = np.random.normal(mean, sigma, img.shape)
-    noisy_image = noisy_image.reshape(img.shape)
-    noisy_image = img + noisy_image
-    return noisy_image
+def add_noise(img, snr_db):
 
+    """ 
+    signal: np.ndarray
+    snr: float
 
-# def sp_noise(image,prob):
-#     '''
-#     Add salt and pepper noise to image
-#     prob: Probability of the noise
-#     '''
-#     output = np.zeros(image.shape,np.uint8)
-#     thres = 1 - prob
-#     for i in range(image.shape[0]):
-#         for j in range(image.shape[1]):
-#             rdn = random.random()
-#             if rdn < prob:
-#                 output[i][j] = 0
-#             elif rdn > thres:
-#                 output[i][j] = 255
-#             else:
-#                 output[i][j] = image[i][j]
-#     return output
+    returns -> np.ndarray
+    """
 
-# image = cv2.imread('image.jpg',0) # Only for grayscale image
-# noise_img = sp_noise(image,0.05)
-# cv2.imwrite('sp_noise.jpg', noise_img)
+    img_mean = np.mean(img)
+    avg_db = 10 * np.log10(img_mean)
+    noise_avg_db = avg_db - snr_db
+    snr = 10.0 ** (noise_avg_db / 10.0)
+
+    noise = np.random.normal(0, np.sqrt(snr), img.shape)
+    return img + noise
+
+    # # Generate the noise as you did
+    # #noise = acoustics.generator.white(img.size).reshape(img.shape)
+    # noise =  np.random.normal(mean, sigma, img.shape)
+
+    # snr = 10.0 ** (snr_db / 10.0)
+
+    # # work out the current SNR
+    # current_snr = np.mean(img) / np.std(noise)
+
+    # # scale the noise by the snr ratios (smaller noise <=> larger snr)
+    # noise *= current_snr / snr
+
+    # # return the new signal with noise
+
+    # return img + noise
+
+    # # var = 0.1
+    # # sigma = var ** 1.2
+    # # noisy_image = np.random.normal(mean, sigma, img.shape)
+    # # noisy_image = noisy_image.reshape(img.shape)
+    # # noisy_image = img + noisy_image
+    # # return noisy_image
 
 
 def main():
-    image_path = "heggi_copy.png"
+    image_path = "195_O.png"
     image = cv2.imread(image_path)
     i_array = np.array(image / 255)
-    noisy_image = add_noise(i_array)
+    noisy_image = add_noise(i_array, 40)
     # if noisy_image.min() < 0:
     #     low_clip = -1
     # else:
