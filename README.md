@@ -21,12 +21,11 @@ Terdiri dari 4 macam branch
 - [non-gui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/non-gui) Branch ini menjalankan aplikasi dengan menggunakan command line interface dimana pengoprasiannya dengan kode
 
 ## Build With
-- Python Programming Language - >= 3.7.2
-- Silahkan install modul/library yang dibutuhkan dengan menggunakan perintah pip -r requirements.txt
+- Python Programming Language >= 3.7.2
+- Silahkan install modul/library yang ada pada requirement.txt
 
 
 ## Colaborator
-
 Name Of Contribute
 - 1301184219 - Sya Raihan Heggi
 - 1301180379 - Adabi Raihan Muhammad
