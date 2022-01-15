@@ -12,6 +12,9 @@ from tqdm import tqdm
 
 from PIL import Image
 
+DIRECTORY_OUTPUT = "ouput_image_result"
+
+
 
 class detect(object):
     def __init__(self, image_path, block_dimension=32):
@@ -272,21 +275,25 @@ class detect(object):
                     x_coordinate + 1: x_coordinate + 3, y_cordinate, 1
                     ] = 255
 
-        timestamp = time.strftime("%Y%m%d_%H%M%S")
+        # timestamp = time.strftime("%Y%m%d_%H%M%S")
+        timestamp = time.strftime("%Y%m%d")
 
         groundtruth_image = groundtruth_image.astype(np.uint8)
         lined_image = lined_image.astype(np.uint8)
 
+        new_image_name_ground_truth = "output_" + timestamp + "_" + self.image_path
+        new_image_name_lined = "output_" + timestamp + "_lined_" + self.image_path
+
         imageio.imwrite(
-            self.image_output_directory + (timestamp + "_" + self.image_path),
+            os.path.join(self.image_output_directory, DIRECTORY_OUTPUT, new_image_name_ground_truth),
             groundtruth_image,
         )
         imageio.imwrite(
-            self.image_output_directory + (timestamp + "_lined_" + self.image_path),
+            os.path.join(self.image_output_directory, DIRECTORY_OUTPUT, new_image_name_lined),
             lined_image,
         )
 
-        return self.image_output_directory + timestamp + "_lined_" + self.image_path
+        return os.path.join(self.image_output_directory, DIRECTORY_OUTPUT, new_image_name_lined)
 
     def show_image(self):
         self.image_data.show()
@@ -313,6 +320,9 @@ class detect(object):
 def main():
     image_path = "001_O_added.png"
 
+    # Directory
+    create_dir(DIRECTORY_OUTPUT)
+
     detect_model = detect(image_path, 32)
     detect_model.show_image()
     detect_model.show_metadata()
@@ -323,6 +333,16 @@ def main():
     result_path = detect_model.reconstruct()
 
     print(result_path)
+
+
+def create_dir(str):
+    try:
+        os.makedirs(str, exist_ok=True)
+        print("Directory '%s' created successfully" % str)
+    except OSError as error:
+        print("Directory '%s' can not be created")
+
+    print("Directory '%s' created" % str)
 
 
 if __name__ == "__main__":

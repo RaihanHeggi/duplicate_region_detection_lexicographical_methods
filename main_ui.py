@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QVBoxLayout, QLabel
 from PyQt5.QtGui import QPixmap
 
-from detect import detect
+from detect import detect, create_dir, DIRECTORY_OUTPUT
 
 ID_DIALOG = "dialog"
 ID_FIELD_FILE_NAME = "filename1"
@@ -76,6 +76,10 @@ class Window(object):
 
     def on_click_process(self):
         # TODO For Processing Image
+
+        # Directory
+        create_dir(DIRECTORY_OUTPUT)
+
         image_path_uri = self.filename.text()  # Image Path dari Selected Browse Image
         self.create_image1(image_path_uri)  # Ini Buat Nampilin Gambar Pertama
 
