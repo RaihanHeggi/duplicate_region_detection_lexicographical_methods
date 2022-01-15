@@ -12,8 +12,9 @@ from tqdm import tqdm
 
 from PIL import Image
 
+DEFAULT_PARENT_DIR = os.getcwd()
+TIME_STAMP = time.strftime("%Y%m%d")
 DIRECTORY_OUTPUT = "ouput_image_result"
-
 
 
 class detect(object):
@@ -140,9 +141,6 @@ class detect(object):
         return
 
     def reconstruct(self):
-        # Fungsi dibuat berdasarkan referensi nomor satu
-
-        self.image_output_directory = os.getcwd()
 
         # create an array as the canvas of the final image
         groundtruth_image = np.zeros((self.image_height, self.image_width))
@@ -276,24 +274,23 @@ class detect(object):
                     ] = 255
 
         # timestamp = time.strftime("%Y%m%d_%H%M%S")
-        timestamp = time.strftime("%Y%m%d")
 
         groundtruth_image = groundtruth_image.astype(np.uint8)
         lined_image = lined_image.astype(np.uint8)
 
-        new_image_name_ground_truth = "output_" + timestamp + "_" + self.image_path
-        new_image_name_lined = "output_" + timestamp + "_lined_" + self.image_path
+        new_image_name_ground_truth = "output_" + TIME_STAMP + "_" + self.image_path
+        new_image_name_lined = "output_" + TIME_STAMP + "_lined_" + self.image_path
 
         imageio.imwrite(
-            os.path.join(self.image_output_directory, DIRECTORY_OUTPUT, new_image_name_ground_truth),
+            get_uri_image(new_image_name_ground_truth),
             groundtruth_image,
         )
         imageio.imwrite(
-            os.path.join(self.image_output_directory, DIRECTORY_OUTPUT, new_image_name_lined),
+            get_uri_image(new_image_name_lined),
             lined_image,
         )
 
-        return os.path.join(self.image_output_directory, DIRECTORY_OUTPUT, new_image_name_lined)
+        return get_uri_image(new_image_name_lined)
 
     def show_image(self):
         self.image_data.show()
@@ -333,6 +330,10 @@ def main():
     result_path = detect_model.reconstruct()
 
     print(result_path)
+
+
+def get_uri_image(image_path):
+    return os.path.join(DEFAULT_PARENT_DIR, DIRECTORY_OUTPUT, image_path)
 
 
 def create_dir(str):
