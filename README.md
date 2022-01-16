@@ -31,7 +31,7 @@ Terdiri dari 4 macam branch
 Untuk yang tertarik untuk membaca lebih lanjut mengenai hasil percobaan menggunakan kode ini dapat membaca dokumentasi [PDF](https://drive.google.com/file/d/1JvAmOUgq5Vfcn9agx8mXLls2kmKO5KUN/view?usp=sharing)  dan Presentasi (Coming Soon)
 
 ## Colaborator
-Name Of Contribute
+Name Of Contributor
 - 1301184219 - Sya Raihan Heggi  [Github Account](https://github.com/RaihanHeggi)
 - 1301180379 - Adabi Raihan Muhammad
 - 1301198497 - Muhammad Faisal Amir [Github Account](https://github.com/amirisback)
