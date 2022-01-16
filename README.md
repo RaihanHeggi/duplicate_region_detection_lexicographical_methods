@@ -27,7 +27,7 @@ Terdiri dari 4 macam branch
 
 ## Colaborator
 Name Of Contribute
-- 1301184219 - Sya Raihan Heggi
+- 1301184219 - Sya Raihan Heggi  [Github Account](github.com/RaihanHeggi)
 - 1301180379 - Adabi Raihan Muhammad
 - 1301198497 - Muhammad Faisal Amir [Github Account](github.com/amirisback)
 - 1301174524 - Muhammad Irfan Aldi
