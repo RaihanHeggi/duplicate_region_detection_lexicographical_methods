@@ -17,7 +17,7 @@ Repository Penyimpanan File Tubes Kelas Forensik DIgital Kelompok 3
 Terdiri dari 4 macam branch
 - [master](https://github.com/RaihanHeggi/tubes_duplicate_region) Branch ini terdiri dari master code dimana semua berjalan dengan lancar
 - [noise-processing](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/noise-processing) Branch ini terdiri dari noise-processing research
-- [graphic-ui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/graphic-ui) Branch ini menjalankan applikasi dengan graphic user interface dimana sangat mudah di jalankan
+- [graphic-ui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/graphic-ui) Branch ini menjalankan aplikasi dengan graphic user interface dimana sangat mudah di jalankan
 - [non-gui](https://github.com/RaihanHeggi/tubes_duplicate_region/tree/non-gui) Branch ini menjalankan aplikasi dengan menggunakan command line interface dimana pengoprasiannya dengan kode
 
 ## Build With
@@ -27,9 +27,9 @@ Terdiri dari 4 macam branch
 
 ## Colaborator
 Name Of Contribute
-- 1301184219 - Sya Raihan Heggi  [Github Account](github.com/RaihanHeggi)
+- 1301184219 - Sya Raihan Heggi  [Github Account](https://github.com/RaihanHeggi)
 - 1301180379 - Adabi Raihan Muhammad
-- 1301198497 - Muhammad Faisal Amir [Github Account](github.com/amirisback)
+- 1301198497 - Muhammad Faisal Amir [Github Account](https://github.com/amirisback)
 - 1301174524 - Muhammad Irfan Aldi
 - 1301184005 - Gia Nusantara
 
