@@ -3,7 +3,7 @@ Repository Penyimpanan File Tubes Kelas Forensik DIgital Kelompok 3
 
 ## Work Based On 
 1. https://github.com/rahmatnazali/image-copy-move-detection.git
-2. https://github.com/Xanthor-Aditya/Unsupervised-Image-Forgery-Detection-Using-Discrete-Cosine-Transform-with-K-means-clustering.git
+2. https://github.com/Xanthor-Aditya/Unsupervised-Image-Forgery-Detection-Using-Discrete-Cosine-Transform-with-K-means-clustering.git (Menggunakan DCT tetapi ada tahapan Lexicographical Sort)
 
 ## Related paper
 1. Duplication detection algorithm, taken from Exposing Digital Forgeries by Detecting Duplicated Image Region; Fast and smooth attack detection algorithm on digital image using principal component analysis, but sensitive to noise and post region duplication process
@@ -24,6 +24,8 @@ Terdiri dari 4 macam branch
 - Python Programming Language >= 3.7.2
 - Silahkan install modul/library yang ada pada requirement.txt
 
+## Documentation
+Untuk yang tertarik untuk membaca lebih lanjut mengenai hasil percobaan menggunakan kode ini dapat membaca dokumentasi [PDF](https://drive.google.com/file/d/1JvAmOUgq5Vfcn9agx8mXLls2kmKO5KUN/view?usp=sharing)  dan Presentasi (Coming Soon)
 
 ## Colaborator
 Name Of Contribute
