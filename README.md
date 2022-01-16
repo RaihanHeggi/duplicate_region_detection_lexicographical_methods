@@ -12,8 +12,9 @@ Repository Penyimpanan File Tubes Kelas Forensik DIgital Kelompok 3
 
 ## Result Apps
 ![ScreenShoot Apps](docs/image/image_gui.png?raw=true)
-![Detection Scenario](https://user-images.githubusercontent.com/58820833/149647020-f8929d7d-dfae-485d-bc9a-98490d80529e.jpg)
 
+## Detection Example
+![1642263769336](https://user-images.githubusercontent.com/58820833/149647100-008c1743-9756-46bf-ae2f-ccaf5dc146e7.jpg)
 
 ## Progress Development Apps
 Terdiri dari 4 macam branch
