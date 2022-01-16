@@ -12,6 +12,8 @@ Repository Penyimpanan File Tubes Kelas Forensik DIgital Kelompok 3
 
 ## Result Apps
 ![ScreenShoot Apps](docs/image/image_gui.png?raw=true)
+![Detection Scenario](https://user-images.githubusercontent.com/58820833/149647020-f8929d7d-dfae-485d-bc9a-98490d80529e.jpg)
+
 
 ## Progress Development Apps
 Terdiri dari 4 macam branch
@@ -35,7 +37,7 @@ Name Of Contribute
 - 1301174524 - Muhammad Irfan Aldi
 - 1301184005 - Gia Nusantara
 
-Telkom University S1 Informatika IF-42-Gab
+Telkom University S1 Informatika, Digital Forensics IF-42-Gab
 
 ## Attention !!!
 - Please enjoy and don't forget fork and give a star
