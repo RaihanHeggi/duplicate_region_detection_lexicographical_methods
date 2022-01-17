@@ -282,8 +282,11 @@ class detect(object):
         groundtruth_image = groundtruth_image.astype(np.uint8)
         lined_image = lined_image.astype(np.uint8)
 
-        new_image_name_ground_truth = "output_" + TIME_STAMP + "_" + self.image_path
-        new_image_name_lined = "output_" + TIME_STAMP + "_lined_" + self.image_path
+        image_path_uri_arr = self.image_path.split("/")
+        image_path_name = image_path_uri_arr[-1]
+
+        new_image_name_ground_truth = "output_" + TIME_STAMP + "_" + image_path_name
+        new_image_name_lined = "output_" + TIME_STAMP + "_lined_" + image_path_name
 
         imageio.imwrite(
             get_uri_image(new_image_name_ground_truth),

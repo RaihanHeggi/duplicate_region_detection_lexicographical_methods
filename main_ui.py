@@ -163,7 +163,7 @@ class Window(object):
 
         print("Get Image Uri : " + image_path_uri)
 
-        detect_model = detect(image_path_name, 32)
+        detect_model = detect(image_path_uri, 32)
         detect_model.show_image()
         detect_model.show_metadata()
 
