@@ -28,7 +28,7 @@ Terdiri dari 4 macam branch
 - Silahkan install modul/library yang ada pada requirement.txt
 
 ## Documentation
-Untuk yang tertarik untuk membaca lebih lanjut mengenai hasil percobaan menggunakan kode ini dapat membaca dokumentasi [PDF](https://drive.google.com/file/d/1JvAmOUgq5Vfcn9agx8mXLls2kmKO5KUN/view?usp=sharing)  dan Presentasi (Coming Soon)
+Untuk yang tertarik untuk membaca lebih lanjut mengenai hasil percobaan menggunakan kode ini dapat membaca dokumentasi [PDF](https://drive.google.com/file/d/1JvAmOUgq5Vfcn9agx8mXLls2kmKO5KUN/view?usp=sharing)  dan [Presentasi](https://docs.google.com/presentation/d/1yBh25Efaw2J0XFElOXw7j0HJAt7SuJc7NQ1F_1E7IrI/edit?usp=sharing)
 
 ## Colaborator
 Name Of Contributor
